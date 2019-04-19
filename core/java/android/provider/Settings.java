@@ -4585,14 +4585,6 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
-         * @hide
-         */
-        public static final String ROAMING_INDICATOR_ICON = "roaming_indicator_icon";
-        /** @hide */
-        private static final Validator ROAMING_INDICATOR_ICON_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
          * Show four g instead of LTE
          * @hide
          */
@@ -4782,6 +4774,15 @@ public final class Settings {
         /** @hide */
         private static final Validator BOTTOM_GESTURE_TRIGGER_TIMEOUT_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
+
+        /**
+         * Whether to display the kronic logo in the statusbar
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO = "status_bar_logo";
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_VALIDATOR =
+                BOOLEAN_VALIDATOR;
 
         /**
          * @hide
@@ -5142,7 +5143,7 @@ public final class Settings {
         public static final Validator PROXIMITY_ON_WAKE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
-        * @hide
+         * @hide
          */
         public static final String START_SCREEN_STATE_SERVICE = "start_screen_state_service";
 
@@ -5182,6 +5183,35 @@ public final class Settings {
          * @hide
          */
         public static final String SENSOR_BLOCK = "sensor_block";
+
+        /**
+         *  Weather to use a custom color for the visualizer on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR = "lock_screen_visualizer_use_custom_color";
+
+        /**
+         *  Custom color of the visualizer on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_VISUALIZER_CUSTOM_COLOR = "lock_screen_visualizer_custom_color";
+
+        /**
+         * modify how the album art shows up on lockscreen
+         * 0 - default
+         * 1 - grayscale
+         * 2 - blurry
+         * @hide
+         */
+        public static final String LOCKSCREEN_ALBUM_ART_FILTER = "lockscreen_album_art_filter";
+
+        /**
+         * Whether to show the kill app button in notification guts
+         *
+         * @hide
+         */
+        public static final String NOTIFICATION_GUTS_KILL_APP_BUTTON =
+                "notification_guts_kill_app_button";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -5298,7 +5328,6 @@ public final class Settings {
             QS_QUICKBAR_COLUMNS,
             RECENTS_CLEAR_ALL_LOCATION,
             RECENTS_COMPONENT,
-            ROAMING_INDICATOR_ICON,
             SCREENSHOT_DEFAULT_MODE,
             SCREENSHOT_SHUTTER_SOUND,
             SCREENRECORD_QUALITY_MODE,
@@ -5315,6 +5344,7 @@ public final class Settings {
             STATUSBAR_CLOCK_DATE_POSITION,
             STATUSBAR_HIDE_NOTCH,
             STATUS_BAR_BRIGHTNESS_CONTROL,
+            STATUS_BAR_LOGO,
             STATUS_BAR_SHOW_CARRIER,
             STATUS_BAR_QUICK_QS_PULLDOWN,
             SWAP_VOLUME_BUTTONS,
@@ -5452,7 +5482,6 @@ public final class Settings {
             PUBLIC_SETTINGS.add(QS_TILE_HIDE_TITLE);
             PUBLIC_SETTINGS.add(RECENTS_CLEAR_ALL_LOCATION);
             PUBLIC_SETTINGS.add(RECENTS_COMPONENT);
-            PUBLIC_SETTINGS.add(ROAMING_INDICATOR_ICON);
             PUBLIC_SETTINGS.add(SCREENSHOT_DEFAULT_MODE);
             PUBLIC_SETTINGS.add(SCREENSHOT_SHUTTER_SOUND);
             PUBLIC_SETTINGS.add(SCREENRECORD_QUALITY_MODE);
@@ -5491,7 +5520,7 @@ public final class Settings {
             PUBLIC_SETTINGS.add(BUTTON_BACKLIGHT_ENABLE);
             PUBLIC_SETTINGS.add(BUTTON_BACKLIGHT_TIMEOUT);
             PUBLIC_SETTINGS.add(BUTTON_BACKLIGHT_ON_TOUCH_ONLY);
-
+            PUBLIC_SETTINGS.add(STATUS_BAR_LOGO);
         }
 
         /**
@@ -5684,7 +5713,6 @@ public final class Settings {
             VALIDATORS.put(QS_TILE_HIDE_TITLE, QS_TILE_HIDE_TITLE_VALIDATOR);
             VALIDATORS.put(RECENTS_CLEAR_ALL_LOCATION, RECENTS_CLEAR_ALL_LOCATION_VALIDATOR);
             VALIDATORS.put(RECENTS_COMPONENT,RECENTS_COMPONENT_VALIDATOR);
-            VALIDATORS.put(ROAMING_INDICATOR_ICON,ROAMING_INDICATOR_ICON_VALIDATOR);
             VALIDATORS.put(SCREENSHOT_DEFAULT_MODE, SCREENSHOT_DEFAULT_MODE_VALIDATOR);
             VALIDATORS.put(SCREENRECORD_QUALITY_MODE, SCREENRECORD_QUALITY_MODE_VALIDATOR);
             VALIDATORS.put(SCREENSHOT_SHUTTER_SOUND, SCREENSHOT_SHUTTER_SOUND_VALIDATOR);
@@ -5722,6 +5750,7 @@ public final class Settings {
             VALIDATORS.put(PROXIMITY_ON_WAKE, PROXIMITY_ON_WAKE_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_LIGHT_PULSE, BOOLEAN_VALIDATOR);
             VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO, STATUS_BAR_LOGO_VALIDATOR);
         }
 
         /**
