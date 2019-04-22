@@ -899,6 +899,19 @@ public final class Settings {
 
     /**
      * @hide
+     * Activity Action: Show the "app ops" details screen.
+     * <p>
+     * Input: The Intent's data URI specifies the application package name
+     * to be shown, with the "package" scheme.  That is "package:com.my.app".
+     * <p>
+     * Output: Nothing.
+     */
+    @SdkConstant(SdkConstantType.ACTIVITY_INTENT_ACTION)
+    public static final String ACTION_APP_OPS_DETAILS_SETTINGS =
+            "android.settings.APP_OPS_DETAILS_SETTINGS";
+
+    /**
+     * @hide
      * Activity Action: Show the "app ops" settings screen.
      * <p>
      * Input: Nothing.
@@ -4922,6 +4935,13 @@ public final class Settings {
         private static final Validator FULL_GESTURE_NAVBAR_DT2S_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+       /**
+        * Statusbar logo Style
+        * @hide
+         */
+        public static final String STATUS_BAR_LOGO_STYLE = "status_bar_logo_style";
+
+
         /**
          * Disable expanding quick settings on secure lock screens
          *
@@ -4955,6 +4975,14 @@ public final class Settings {
         public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
         /** @hide */
         public static final Validator STATUS_BAR_BRIGHTNESS_CONTROL_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * The enabled mode for the theme tile.
+         * - ACCENT
+         * - STYLE
+         * @hide
+         */
+        public static final String THEME_TILE_ENABLED_MODE = "theme_tile_enabled_mode";
 
         /**
          * Custom Ambient tilt gesture
@@ -9381,6 +9409,15 @@ public final class Settings {
          * @hide
          */
         public static final String LONG_SQUEEZE_SELECTION_SMART_ACTIONS = "long_squeeze_selection_smart_actions";
+
+        /**
+         * @hide
+         */
+        public static final String PRIVACY_GUARD_DEFAULT = "privacy_guard_default";
+         /**
+         * @hide
+         */
+        public static final String PRIVACY_GUARD_NOTIFICATION = "privacy_guard_notification";
 
         /**
          * Display style of the status bar battery information
