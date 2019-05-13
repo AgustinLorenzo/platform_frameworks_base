@@ -148,7 +148,11 @@
 	
     <!-- Smart charging battery percentage -->
     <integer name="config_smartChargingBatteryLevel">80</integer>
+
 	
+    <!-- Default state for LiveDisplay -->
+    <bool name="config_liveDisplayAvailable">false</bool>
+
     <!-- Default values for LiveDisplay -->
     <integer name="config_dayColorTemperature">6500</integer>
     <integer name="config_nightColorTemperature">4800</integer>
