@@ -136,6 +136,8 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
 
     private String mTrackInfoSeparator;
 
+    private boolean mLessBoringHeadsUp;
+
     /**
      * Notifications with keys in this set are not actually around anymore. We kept them around
      * when they were canceled in response to a remote input interaction. This allows us to show
@@ -163,16 +165,27 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
             }
 
             // Check if the notification is displaying the menu, if so slide notification back
-            if (row.getProvider() != null && row.getProvider().isMenuVisible()) {
+            if (isMenuVisible(row)) {
                 row.animateTranslateNotification(0);
                 return;
-            }
+            } else if (row.isChildInGroup() && isMenuVisible(row.getNotificationParent())) {
+                row.getNotificationParent().animateTranslateNotification(0);
+                return;
+            } else if (row.isSummaryWithChildren() && row.areChildrenExpanded()) {
+                // We never want to open the app directly if the user clicks in between
+                // the notifications.
+                return;
+            } 
 
             // Mark notification for one frame.
             row.setJustClicked(true);
             DejankUtils.postAfterTraversal(() -> row.setJustClicked(false));
 
             mCallback.onNotificationClicked(sbn, row);
+        }
+
+        private boolean isMenuVisible(ExpandableNotificationRow row) {
+            return row.getProvider() != null && row.getProvider().isMenuVisible();
         }
 
         public void register(ExpandableNotificationRow row, StatusBarNotification sbn) {
@@ -481,18 +494,6 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
         entry.row.setLowPriorityStateUpdated(false);
 
         if (mEntryToRefresh == entry && mMediaManager.isMediaNotification(entry)) {
-            String notificationText = null;
-            final MediaMetadata data = mMediaManager.getMediaMetadata();
-            if (data != null) {
-                CharSequence artist = data.getText(MediaMetadata.METADATA_KEY_ARTIST);
-                //CharSequence album = data.getText(MediaMetadata.METADATA_KEY_ALBUM);
-                CharSequence title = data.getText(MediaMetadata.METADATA_KEY_TITLE);
-                if (artist != null && title != null) {
-                    notificationText = String.format(mTrackInfoSeparator, title.toString(), artist.toString());
-                }
-            }
-            mMediaManager.setMediaNotificationText(notificationText, false);
-
             if (!mDontPulse) {
                 final Notification n = entry.notification.getNotification();
                 final int[] colors = {n.backgroundColor, n.foregroundColor,
@@ -955,13 +956,25 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
         updateNotificationsOnDensityOrFontScaleChanged();
     }
 
+    public void setUseLessBoringHeadsUp(boolean lessBoring) {
+        mLessBoringHeadsUp = lessBoring;
+    }
+
+    public boolean shouldSkipHeadsUp(StatusBarNotification sbn) {
+        boolean isImportantHeadsUp = false;
+        String notificationPackageName = sbn.getPackageName().toLowerCase();
+        isImportantHeadsUp = notificationPackageName.contains("dialer") ||
+                notificationPackageName.contains("messaging");
+        return !mPresenter.isDozing() && mLessBoringHeadsUp && !isImportantHeadsUp;
+    }
+
     protected boolean shouldPeek(NotificationData.Entry entry) {
         return shouldPeek(entry, entry.notification);
     }
 
     public boolean shouldPeek(NotificationData.Entry entry, StatusBarNotification sbn) {
-        if (!mUseHeadsUp && !mPresenter.isDozing() || mPresenter.isDeviceInVrMode()) {
-            if (DEBUG) Log.d(TAG, "No peeking: no huns or vr mode");
+        if (!mUseHeadsUp && !mPresenter.isDozing() || mPresenter.isDeviceInVrMode() || shouldSkipHeadsUp(sbn)) {
+            if (DEBUG) Log.d(TAG, "No peeking: no huns or vr mode or less boring headsup enabled");
             return false;
         }
 

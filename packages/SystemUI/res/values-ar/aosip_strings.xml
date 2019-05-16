@@ -81,9 +81,9 @@
     <string name="lte_on">LTE يعمل </string>
     <string name="lte_off">LTE لا يعمل</string>
     <!-- HW Keys Tile -->
-    <string name="accessibility_quick_settings_hwkeys_on">HW keys on</string>
-    <string name="accessibility_quick_settings_hwkeys_off">HW keys off</string>
-    <string name="quick_settings_hwkeys_label">HW keys</string>
+    <string name="accessibility_quick_settings_hwkeys_on">أزرار الجهاز مفعلة</string>
+    <string name="accessibility_quick_settings_hwkeys_off">أزرار الجهاز معّطلة</string>
+    <string name="quick_settings_hwkeys_label">أزرار الجهاز</string>
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">تم حذف لقطة الشاشة</string>
     <!-- Ambient Display Pixel-Like string -->
@@ -134,6 +134,14 @@
     <string name="accessibility_quick_settings_usb_tether_changed_off">تم إيقاف الانترنت عبر USB</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">تم تشغيل الانترنت عبر USB</string>
     <string name="quick_settings_usb_tether_label">الربط عبر USB</string>
+    <!-- Gaming Mode -->
+    <string name="gaming_mode_tile_title">وضع الألعاب</string>
+    <string name="gaming_mode_tile_toast">وضع الألعاب مفعل</string>
+    <string name="gaming_mode_tile_toast_disabled">وضع الألعاب معطل</string>
+    <string name="gaming_mode_dialog_title">وضع الألعاب</string>
+    <string name="gaming_mode_dialog_message">عند تمكين وضع الألعاب ، سيتم تعطيل جميع الرسائل العلوية وسيتم إيقاف تشغيل مفاتيح الجهاز. سيتم إعادة تعيين جميع الإعدادات المعطلة إلى الوضع الافتراضي بمجرد خروجك من وضع الألعاب.</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">وضع الألعاب مفعل</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">وضع الألعاب معطل</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - التنبيهات الخاطفة غافية لدقيقة واحدة.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - التنبيهات الخاطفة غافية ل <xliff:g id="number">%d</xliff:g> دقائق.</string>

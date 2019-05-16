@@ -4486,7 +4486,7 @@ public final class Settings {
         public static final String LOCKSCREEN_CLOCK_SELECTION = "lockscreen_clock_selection";
         /** @hide */
         public static final Validator LOCKSCREEN_CLOCK_SELECTION_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 8);
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 9);
 
         /**
          * Whether to hide the items underneath the lockscreen clock
@@ -4568,6 +4568,12 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Wheter to show heads up only for dialer and sms apps
+         * @hide
+         */
+        public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
+
+        /**
          * Whether to show VoLTE icon or not
          * @hide
          */
@@ -4593,6 +4599,12 @@ public final class Settings {
         /** @hide */
         private static final Validator SWAP_VOLUME_BUTTONS_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+
+	/**
+         * Whether to enable the pixel navbar animation
+         * @hide
+         */
+        public static final String PIXEL_NAV_ANIMATION = "pixel_nav_animation";
 
         /**
          * Toast icon
@@ -4698,6 +4710,13 @@ public final class Settings {
                BOOLEAN_VALIDATOR;
 
         /**
+         * Ambient screen settings
+         * "screen_brightness_array=0:1:2:3:4"
+         * @hide
+         */
+        public static final String ALWAYS_ON_DISPLAY_CONSTANTS_CUST = "always_on_display_constants_cust";
+
+        /**
          * Select various accents to go along with system themes
          *
          * @hide
@@ -4705,7 +4724,7 @@ public final class Settings {
         public static final String ACCENT_PICKER = "accent_picker";
         /** @hide */
         public static final Validator ACCENT_PICKER_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 28);
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 30);
 
         /**
          * Whether to use blackaf themes in place of dark
