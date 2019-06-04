@@ -178,7 +178,7 @@ public class SystemSensorManager extends SensorManager {
                 String opPkgName = mContext.getOpPackageName();
                 for (String blockedPkgName : mContext.getResources().getStringArray(com.android.internal.R.array.config_blockPackagesSensorDrain))
                 {
-                    if(opPkgName.equals(blockedPkgName)
+                    if(opPkgName.equals(blockedPkgName))
                     {
                         Log.w(TAG, "Preventing " + pkgName + "(" + opPkgName +") from draining battery using " + "accelerometer sensor");
                         Log.w(TAG,"Here :", new Throwable());
@@ -192,7 +192,7 @@ public class SystemSensorManager extends SensorManager {
                 String opPkgName = mContext.getOpPackageName();
                 for (String blockedPkgName : mContext.getResources().getStringArray(com.android.internal.R.array.config_blockPackagesSensorDrain))
                 {
-                    if(opPkgName.equals(blockedPkgName)
+                    if(opPkgName.equals(blockedPkgName))
                     {
                         Log.w(TAG, "Preventing " + pkgName + "(" + opPkgName +") from draining battery using " + " linear accelerometer sensor");
                         Log.w(TAG,"Here :", new Throwable());
@@ -282,7 +282,7 @@ public class SystemSensorManager extends SensorManager {
                 String opPkgName = mContext.getOpPackageName();
                 for (String blockedPkgName : mContext.getResources().getStringArray(com.android.internal.R.array.config_blockPackagesSensorDrain))
                 {
-                    if(opPkgName.equals(blockedPkgName)
+                    if(opPkgName.equals(blockedPkgName))
                     {
                         Log.w(TAG, "Preventing " + pkgName + "(" + opPkgName +") from draining battery using " + "accelerometer sensor");
                         Log.w(TAG,"Here :", new Throwable());
@@ -296,7 +296,7 @@ public class SystemSensorManager extends SensorManager {
                 String opPkgName = mContext.getOpPackageName();
                 for (String blockedPkgName : mContext.getResources().getStringArray(com.android.internal.R.array.config_blockPackagesSensorDrain))
                 {
-                    if(opPkgName.equals(blockedPkgName)
+                    if(opPkgName.equals(blockedPkgName))
                     {
                         Log.w(TAG, "Preventing " + pkgName + "(" + opPkgName +") from draining battery using " + " linear accelerometer sensor");
                         Log.w(TAG,"Here :", new Throwable());
