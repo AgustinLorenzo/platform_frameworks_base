@@ -169,7 +169,6 @@ public class SystemSensorManager extends SensorManager {
             {
                 String pkgName = mContext.getPackageName();
                 Log.w(TAG, "Preventing " + pkgName + " from draining battery using " + "significant motion sensor");
-                Log.w(TAG,"Here :", new Throwable());
                 return true;
             }
             else if (sensor.getType() == Sensor.TYPE_ACCELEROMETER)
@@ -181,7 +180,6 @@ public class SystemSensorManager extends SensorManager {
                     if(opPkgName.equals(blockedPkgName))
                     {
                         Log.w(TAG, "Preventing " + pkgName + "(" + opPkgName +") from draining battery using " + "accelerometer sensor");
-                        Log.w(TAG,"Here :", new Throwable());
                         return true;
                     }
                 }
@@ -195,7 +193,6 @@ public class SystemSensorManager extends SensorManager {
                     if(opPkgName.equals(blockedPkgName))
                     {
                         Log.w(TAG, "Preventing " + pkgName + "(" + opPkgName +") from draining battery using " + " linear accelerometer sensor");
-                        Log.w(TAG,"Here :", new Throwable());
                         return true;
                     }
                 }
@@ -273,7 +270,6 @@ public class SystemSensorManager extends SensorManager {
             {
                 String pkgName = mContext.getPackageName();
                 Log.w(TAG, "Preventing " + pkgName + " from draining battery using " + "significant motion sensor");
-                Log.w(TAG,"Here :", new Throwable());
                 return true;
             }
             else if (sensor.getType() == Sensor.TYPE_ACCELEROMETER)
@@ -285,7 +281,6 @@ public class SystemSensorManager extends SensorManager {
                     if(opPkgName.equals(blockedPkgName))
                     {
                         Log.w(TAG, "Preventing " + pkgName + "(" + opPkgName +") from draining battery using " + "accelerometer sensor");
-                        Log.w(TAG,"Here :", new Throwable());
                         return true;
                     }
                 }
@@ -299,7 +294,6 @@ public class SystemSensorManager extends SensorManager {
                     if(opPkgName.equals(blockedPkgName))
                     {
                         Log.w(TAG, "Preventing " + pkgName + "(" + opPkgName +") from draining battery using " + " linear accelerometer sensor");
-                        Log.w(TAG,"Here :", new Throwable());
                         return true;
                     }
                 }
