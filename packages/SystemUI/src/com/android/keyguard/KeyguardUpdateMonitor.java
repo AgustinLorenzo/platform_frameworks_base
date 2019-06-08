@@ -827,6 +827,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
                     maxChargingMicroWatt = -1;
                 }
                 final boolean dashChargeStatus = intent.getBooleanExtra(EXTRA_DASH_CHARGER, false);
+				final int temperature = intent.getIntExtra(EXTRA_TEMPERATURE, -1);;
                 final Message msg = mHandler.obtainMessage(
                         MSG_BATTERY_UPDATE, new BatteryStatus(status, level, plugged, health,
                                  maxChargingMicroAmp, maxChargingMicroVolt, maxChargingMicroWatt,
