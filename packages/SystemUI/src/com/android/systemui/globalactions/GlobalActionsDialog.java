@@ -86,6 +86,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
+import com.android.internal.util.aosip.aosipUtils;
 import com.android.internal.util.EmergencyAffordanceManager;
 import com.android.internal.util.ScreenshotHelper;
 import com.android.internal.widget.LockPatternUtils;
@@ -679,7 +680,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         }
     }
 
-    private class ScreenshotAction extends SinglePressAction {
+    private class ScreenshotAction extends SinglePressAction implements LongPressAction {
         public ScreenshotAction() {
             super(com.android.systemui.R.drawable.ic_screenshot, R.string.global_action_screenshot);
         }
@@ -693,11 +694,21 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    mScreenshotHelper.takeScreenshot(1, true, true, mHandler);
-                    MetricsLogger.action(mContext,
-                            MetricsEvent.ACTION_SCREENSHOT_POWER_MENU);
+                    aosipUtils.takeScreenshot(true);
                 }
             }, 500);
+        }
+
+        @Override
+        public boolean onLongPress() {
+            mHandler.sendEmptyMessage(MESSAGE_DISMISS);
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    aosipUtils.takeScreenshot(false);
+                }
+            }, 500);
+            return true;
         }
 
         @Override
@@ -1605,7 +1616,8 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     private static final int MESSAGE_REFRESH = 1;
     private static final int MESSAGE_SHOW = 2;
     private static final int MESSAGE_SHOW_ADVANCED_TOGGLES = 3;
-    private static final int DIALOG_DISMISS_DELAY = 300; // ms
+    private static final int DIALOG_DISMISS_DELAY = 200; // ms
+    private static final int MESSAGE_SHOW_ADVANCED_TOGGLES_SHOW = 6;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -1628,9 +1640,14 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                     handleShow();
                     break;
                 case MESSAGE_SHOW_ADVANCED_TOGGLES:
+                    mDialog.dismiss();
+                    mHandler.sendEmptyMessageDelayed(MESSAGE_SHOW_ADVANCED_TOGGLES_SHOW, DIALOG_DISMISS_DELAY);
+                    break;
+                case MESSAGE_SHOW_ADVANCED_TOGGLES_SHOW:
                     mAdapter.notifyDataSetChanged();
                     addNewItems();
                     mDialog.refreshList();
+                    mDialog.show();
                     break;
             }
         }
@@ -1809,7 +1826,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             mHardwareLayout.animate()
                     .alpha(1)
                     .translationX(0)
-                    .setDuration(300)
+                    .setDuration(DIALOG_DISMISS_DELAY)
                     .setInterpolator(Interpolators.FAST_OUT_SLOW_IN)
                     .setUpdateListener(animation -> {
                         int alpha = (int) ((Float) animation.getAnimatedValue()
@@ -1829,7 +1846,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             mHardwareLayout.animate()
                     .alpha(0)
                     .translationX(getAnimTranslation())
-                    .setDuration(300)
+                    .setDuration(DIALOG_DISMISS_DELAY)
                     .withEndAction(() -> super.dismiss())
                     .setInterpolator(new LogAccelerateInterpolator())
                     .setUpdateListener(animation -> {
