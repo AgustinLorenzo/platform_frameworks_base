@@ -4479,6 +4479,15 @@ public final class Settings {
         private static final Validator BOTTOM_GESTURE_FEEDBACK_DURATION_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * @hide
+         */
+        public static final String BOTTOM_GESTURE_SWIPE_START =
+                "bottom_gesture_navigation_swipe_start";
+
+        private static final Validator BOTTOM_GESTURE_SWIPE_START_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
          * Whether to hide the lockscreen clock
          * @hide
          */
@@ -4622,6 +4631,13 @@ public final class Settings {
         /** @hide */
         private static final Validator TOAST_ICON_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+
+        /**
+         * Select from various styles to use on the QS tiles
+         *
+         * @hide
+         */
+        public static final String QS_TILE_STYLE = "qs_tile_style";
 
         /**
          * Show four g instead of LTE
@@ -5188,6 +5204,16 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Enable face auto unlock on secure lock screens
+         *
+         * @hide
+         */
+        public static final String DISPLAY_MODE = "display_mode";
+
+        private static final Validator DISPLAY_MODE_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
          * Whether to use icon pack for Recents
          * @hide
          */
@@ -5302,6 +5328,12 @@ public final class Settings {
 
         /**
          * Whether to launch default music player when headset plugged in
+         * 0 = don't do anything (default)
+         * 1 = launch only on wired connection
+         * 2 = launch only on bt connection but no carkit
+         * 3 = launch only on bt connection
+         * 4 = launch on both connection types but no carkit
+         * 5 = launch on both connection types
          * @hide
          */
         public static final String HEADSET_CONNECT_PLAYER = "headset_connect_player";
@@ -5561,8 +5593,10 @@ public final class Settings {
             BATTERY_LIGHT_REALLYFULL_COLOR,
             BOTTOM_GESTURE_TRIGGER_TIMEOUT,
             BOTTOM_GESTURE_SWIPE_LIMIT,
+            BOTTOM_GESTURE_SWIPE_START,
             BOTTOM_GESTURE_FEEDBACK_DURATION,
             CUSTOM_CARRIER_LABEL,
+            DISPLAY_MODE,
             DOUBLE_TAP_SLEEP_GESTURE,
             DOUBLE_TAP_SLEEP_ANYWHERE,
             FINGERPRINT_SUCCESS_VIB,
@@ -5728,6 +5762,7 @@ public final class Settings {
             PUBLIC_SETTINGS.add(BATTERY_LIGHT_FULL_COLOR);
             PUBLIC_SETTINGS.add(BATTERY_LIGHT_REALLYFULL_COLOR);
             PUBLIC_SETTINGS.add(BOTTOM_GESTURE_SWIPE_LIMIT);
+            PUBLIC_SETTINGS.add(BOTTOM_GESTURE_SWIPE_START);
             PUBLIC_SETTINGS.add(BOTTOM_GESTURE_TRIGGER_TIMEOUT);
             PUBLIC_SETTINGS.add(BOTTOM_GESTURE_FEEDBACK_DURATION);
             PUBLIC_SETTINGS.add(CUSTOM_CARRIER_LABEL);
@@ -5859,10 +5894,10 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
-
+            PRIVATE_SETTINGS.add(HEADSET_CONNECT_PLAYER);
             // Pocket mode handler.
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
-			
+            PRIVATE_SETTINGS.add(DISPLAY_MODE);
             PRIVATE_SETTINGS.add(DISPLAY_TEMPERATURE_DAY);
             PRIVATE_SETTINGS.add(DISPLAY_TEMPERATURE_NIGHT);
             PRIVATE_SETTINGS.add(DISPLAY_TEMPERATURE_MODE);
@@ -5977,6 +6012,7 @@ public final class Settings {
             VALIDATORS.put(BATTERY_LIGHT_FULL_COLOR, BATTERY_LIGHT_FULL_COLOR_VALIDATOR);
             VALIDATORS.put(BATTERY_LIGHT_REALLYFULL_COLOR, BATTERY_LIGHT_REALLYFULL_COLOR_VALIDATOR);
             VALIDATORS.put(BOTTOM_GESTURE_TRIGGER_TIMEOUT, BOTTOM_GESTURE_TRIGGER_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(BOTTOM_GESTURE_SWIPE_START, BOTTOM_GESTURE_SWIPE_START_VALIDATOR);
             VALIDATORS.put(BOTTOM_GESTURE_SWIPE_LIMIT, BOTTOM_GESTURE_SWIPE_LIMIT_VALIDATOR);
             VALIDATORS.put(BOTTOM_GESTURE_FEEDBACK_DURATION, BOTTOM_GESTURE_FEEDBACK_DURATION_VALIDATOR);
             VALIDATORS.put(CUSTOM_CARRIER_LABEL, CUSTOM_CARRIER_LABEL_VALIDATOR);
@@ -6057,6 +6093,7 @@ public final class Settings {
             VALIDATORS.put(NOTIFICATION_LIGHT_PULSE, BOOLEAN_VALIDATOR);
             VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_LOGO, STATUS_BAR_LOGO_VALIDATOR);
+            VALIDATORS.put(DISPLAY_MODE, DISPLAY_MODE_VALIDATOR);			
             VALIDATORS.put(DISPLAY_TEMPERATURE_DAY, DISPLAY_TEMPERATURE_DAY_VALIDATOR);
             VALIDATORS.put(DISPLAY_TEMPERATURE_NIGHT, DISPLAY_TEMPERATURE_NIGHT_VALIDATOR);
             VALIDATORS.put(DISPLAY_TEMPERATURE_MODE, DISPLAY_TEMPERATURE_MODE_VALIDATOR);
