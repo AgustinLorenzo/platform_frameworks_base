@@ -70,6 +70,7 @@
     <string name="status_bar_roaming">Roaming</string>
     <string name="tuner_show_info_header_title">Mostrar cabeçalho de informação</string>
     <string name="tuner_show_secure_title">Mostrar rodapé de segurança</string>
+    <string name="tuner_hide_disabled_sim">Hide disabled SIM cards</string>
     <!-- ADB network tile -->
     <string name="quick_settings_adb_network">Rede ADB</string>
     <string name="quick_settings_network_adb_enabled_label">Adb sobre rede</string>
@@ -150,52 +151,11 @@
     <!-- QS customizer -->
     <string name="drag_or_tap_to_add_tiles">Arrastar ou tocar para adicionar mosaicos</string>
     <!-- Sync QS Tile -->
-    <string name="quick_settings_sync_label">Sync</string>
-    <string name="accessibility_quick_settings_sync_off">Sync off</string>
-    <string name="accessibility_quick_settings_sync_on">Sync on</string>
-    <string name="accessibility_quick_settings_sync_changed_off">Sync turned off</string>
-    <string name="accessibility_quick_settings_sync_changed_on">Sync turned on</string>
-    <!-- Theme tile -->
-    <string name="system_theme_style_title">Tema</string>
-    <string name="system_theme_style_auto">Automático</string>
-    <string name="system_theme_style_light">Claro</string>
-    <string name="system_theme_style_dark">Escuro</string>
-    <string name="quick_settings_theme_tile_title">Realce</string>
-    <string name="quick_settings_theme_tile_accent_detail_title">Selecionar Realce</string>
-    <string name="quick_settings_theme_tile_style_detail_title">Selecionar tema</string>
-    <string name="quick_settings_theme_tile_color_default">Predefinição</string>
-    <string name="quick_settings_theme_tile_color_red">Vermelho</string>
-    <string name="quick_settings_theme_tile_color_pink">Cor-de-rosa</string>
-    <string name="quick_settings_theme_tile_color_purple">Roxo</string>
-    <string name="quick_settings_theme_tile_color_deep_purple">Roxo escuro</string>
-    <string name="quick_settings_theme_tile_color_indigo">Azul indigo</string>
-    <string name="quick_settings_theme_tile_color_blue">Azul</string>
-    <string name="quick_settings_theme_tile_color_light_blue">Azul claro</string>
-    <string name="quick_settings_theme_tile_color_cyan">Ciano</string>
-    <string name="quick_settings_theme_tile_color_teal">Turquesa</string>
-    <string name="quick_settings_theme_tile_color_green">Verde</string>
-    <string name="quick_settings_theme_tile_color_light_green">Verde claro</string>
-    <string name="quick_settings_theme_tile_color_lime">Lima</string>
-    <string name="quick_settings_theme_tile_color_yellow">Amarelo</string>
-    <string name="quick_settings_theme_tile_color_amber">Âmbar</string>
-    <string name="quick_settings_theme_tile_color_orange">Laranja</string>
-    <string name="quick_settings_theme_tile_color_deep_orange">Laranja escuro</string>
-    <string name="quick_settings_theme_tile_color_brown">Castanho</string>
-    <string name="quick_settings_theme_tile_color_grey">Cinzento</string>
-    <string name="quick_settings_theme_tile_color_blue_grey">Cinza azulado</string>
-    <string name="quick_settings_theme_tile_color_black">Preto</string>
-    <string name="quick_settings_theme_tile_color_white">Branco</string>
-    <string name="quick_settings_theme_tile_color_user_one">#StayDirty</string>
-    <string name="quick_settings_theme_tile_color_user_two">Uvas</string>
-    <string name="quick_settings_theme_tile_color_user_three">Blu</string>
-    <string name="quick_settings_theme_tile_color_user_four">Menta</string>
-    <string name="quick_settings_theme_tile_color_user_five">Dinheiro</string>
-    <string name="quick_settings_theme_tile_color_user_six">Arenoso</string>
-    <string name="quick_settings_theme_tile_color_user_seven">Rams</string>
-    <string name="quick_settings_theme_tile_color_user_eight">Q</string>
-    <string name="quick_settings_theme_tile_color_user_nine">Q Verde</string>
-    <string name="theme_info_title">O que é isto?</string>
-    <string name="theme_info_message">O mosaico dos temas é um mosaico original mas também fácil de usar que permite ao utilizador alterar o tema ou a cor de realce.\n\nPara mudar entre temas ou cores de realce, basta uma pressão longa no mosaico e um novo toque para seleccionar entre as opções mostradas.</string>
+    <string name="quick_settings_sync_label">Sincronizar</string>
+    <string name="accessibility_quick_settings_sync_off">Sincronização desativada</string>
+    <string name="accessibility_quick_settings_sync_on">Sincronização ativada</string>
+    <string name="accessibility_quick_settings_sync_changed_off">A sincronização foi desligada</string>
+    <string name="accessibility_quick_settings_sync_changed_on">A sincronização foi ligada</string>
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">O ecrã está a ser gravado</string>
     <string name="screenrecord_notif_final_ticker">Ecrã gravado com sucesso</string>

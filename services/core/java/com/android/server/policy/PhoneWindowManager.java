@@ -1065,6 +1065,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     };
 
+    private UEventObserver mExtEventObserver = new UEventObserver() {
+        @Override
+        public void onUEvent(UEventObserver.UEvent event) {
+            if (event.get("status") != null) {
+                setHdmiPlugged("connected".equals(event.get("status")));
+            }
+        }
+    };
+
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
@@ -1835,7 +1844,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         case LONG_PRESS_POWER_HIDE_POCKET_LOCK:
             mPowerKeyHandled = true;
             performHapticFeedbackLw(null, HapticFeedbackConstants.LONG_PRESS, false);
-            hidePocketLock(true);
+            hidePocketLock();
             mPocketManager.setListeningExternal(false);
             break;
         }
@@ -6376,6 +6385,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     void setHdmiPlugged(boolean plugged) {
         if (mHdmiPlugged != plugged) {
+            Slog.v(TAG, "Broadcasting Intent for HDMI HPD :"+plugged);
             mHdmiPlugged = plugged;
             updateRotation(true, true);
             Intent intent = new Intent(ACTION_HDMI_PLUGGED);
@@ -6396,6 +6406,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     void initializeHdmiStateInternal() {
         boolean plugged = false;
+        mExtEventObserver.startObserving("mdss_mdp/drm/card");
         // watch for HDMI plug messages if the hdmi switch exists
         if (new File("/sys/devices/virtual/switch/hdmi/state").exists()) {
             mHDMIObserver.startObserving("DEVPATH=/devices/virtual/switch/hdmi");
@@ -7634,12 +7645,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
      * @author Carlo Savignano
      */
     private void handleDevicePocketStateChanged() {
-        final boolean interactive = mPowerManager.isInteractive();
         mImmersiveModeConfirmation.onDevicePocketStateChanged(mIsDeviceInPocket);
         if (mIsDeviceInPocket) {
-            showPocketLock(interactive);
+            showPocketLock();
         } else {
-            hidePocketLock(interactive);
+            hidePocketLock();
         }
     }
 
@@ -7650,7 +7660,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
      * @see this.mPocketCallback;
      * @author Carlo Savignano
      */
-    private void showPocketLock(boolean animate) {
+    private void showPocketLock() {
         if (!mSystemReady || !mSystemBooted || !mKeyguardDrawnOnce
                 || mPocketLock == null || mPocketLockShowing) {
             return;
@@ -7661,10 +7671,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
 
         if (DEBUG) {
-            Log.d(TAG, "showPocketLock, animate=" + animate);
+            Log.d(TAG, "showPocketLock");
         }
 
-        mPocketLock.show(animate);
+        mPocketLock.show();
         mPocketLockShowing = true;
 
         mPocketManager.setPocketLockVisible(true);
@@ -7677,17 +7687,17 @@ public class PhoneWindowManager implements WindowManagerPolicy {
      * @see this.mPocketCallback;
      * @author Carlo Savignano
      */
-    private void hidePocketLock(boolean animate) {
+    private void hidePocketLock() {
         if (!mSystemReady || !mSystemBooted || !mKeyguardDrawnOnce
                 || mPocketLock == null || !mPocketLockShowing) {
             return;
         }
 
         if (DEBUG) {
-            Log.d(TAG, "hidePocketLock, animate=" + animate);
+            Log.d(TAG, "hidePocketLock");
         }
 
-        mPocketLock.hide(animate);
+        mPocketLock.hide();
         mPocketLockShowing = false;
 
         mPocketManager.setPocketLockVisible(false);
